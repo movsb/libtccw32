@@ -408,7 +408,7 @@ ST_FUNC void relocate_common_syms(void)
             /* align symbol */
             align = sym->st_value;
             offset = bss_section->data_offset;
-            offset = (offset + align - 1) & -align;
+			offset = (offset + align - 1) & -(long)align;
             sym->st_value = offset;
             sym->st_shndx = bss_section->sh_num;
             offset += sym->st_size;
@@ -1078,7 +1078,7 @@ static void put_got_entry(TCCState *s1,
             p[6] = 0x68; /* push $xxx */
             put32(p + 7, (plt->data_offset - 32) >> 1);
             p[11] = 0xe9; /* jmp plt_start */
-            put32(p + 12, -(plt->data_offset));
+            put32(p + 12, -(long)(plt->data_offset));
 
             /* the symbol is modified so that it will be relocated to
                the PLT */
