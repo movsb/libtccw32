@@ -1625,7 +1625,7 @@ quit:
 
 /* ------------------------------------------------------------- */
 #define TINY_IMPDEF_GET_EXPORT_NAMES_ONLY
-#include "win32/tools/tiny_impdef.c"
+#include "tiny_impdef.c"
 
 static int pe_load_dll(TCCState *s1, const char *dllname, int fd)
 {
